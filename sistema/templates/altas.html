@@ -1,0 +1,59 @@
+<div class="jumbotron">
+	<h1> Alta de monedero electronico </h1>
+</div>
+<div ng-if = "message_error" class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center">{{message_error}}</p>
+</div>
+<div ng-if = "message_ok" class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center" >{{message_ok}}</p>
+</div>
+<div class="row">
+	<form action="" class="form form-horizontal col-sm-6 col-sm-offset-3 text-center">
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="id_monedero">id monedero: *</label>
+			<div class="col-sm-8">
+				<input required autofocus class="form-control" pattern="[1-9]{2}9[0-9]{3}7[0-9]{3}" id = "id_monedero" type = "text" ng-model = "persona.id_monedero" placeholder = "id_monedero" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="nombre">Nombre del propietario: *</label>
+			<div class="col-sm-8">
+				<input required class="form-control" id = "nombre" type = "text" ng-model = "persona.nombre" placeholder = "nombre" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="apellido_paterno">Apellido paterno: *</label>
+			<div class="col-sm-8">
+				<input required class="form-control" id = "apellido_paterno" type = "text" ng-model = "persona.apellido_paterno" placeholder = "apellido paterno" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="apellido_materno">Apellido materno:</label>
+			<div class="col-sm-8">
+				<input  class="form-control" id = "apellido_materno" type = "text" ng-model = "persona.apellido_materno" placeholder = "apellido materno" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="telefono">Telefono:</label>
+			<div class="col-sm-8">
+				<input  class="form-control" id = "telefono" type = "text" pattern = "[0-9]{10}" ng-model = "persona.telefono" placeholder = "Numero de telefono" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="correo">Correo electrónico:</label>
+			<div class="col-sm-8">
+				<input class="form-control" id = "correo" type = "email" ng-model = "persona.correo" placeholder = "correo electrónico" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="fecha">Fecha de nacimiento: *</label>
+			<div class="col-sm-8">
+				<input required class="form-control" id = "fecha" type = "date" ng-model = "persona.fecha_nacimiento" placeholder = "fecha de nacimiento" />
+			</div>
+		</div>
+		<button class="btn btn-success" ng-click = "activar()"> Activar </button>
+		</br></br>
+	</form>
+</div>

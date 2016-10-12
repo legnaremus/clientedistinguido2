@@ -1,0 +1,49 @@
+
+<div class="jumbotron">
+	<h1> Alertas </h1>
+</div>
+
+<div ng-if = "message_error" class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center">{{message_error}}</p>
+</div>
+<div ng-if = "message_ok" class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center" >{{message_ok}}</p>
+</div>
+
+
+<div class="table-responsive col-sm-10 col-sm-offset-1">
+<table class="table table-condensed " >
+ 
+	<thead>
+		<tr>
+		<th scope="col">Id monedero</th>
+	 	<th scope="col">Id usuario</th>
+		<th scope="col">Monto</th>
+	    <th scope="col">Fecha transaccion</th>
+	    <th scope="col">Estado activado</th>
+	   </tr>
+	</thead>
+
+	<tbody>
+	   <tr ng-repeat = "registro in alertas track by $index">
+			<td>{{registro.id_monedero}}</td>
+	     	<td>{{registro.id_usuario}}</td>
+			<td>{{registro.monto| currency:'$':2}}</td>
+	     	<td>{{registro.fecha_transaccion }}</td>
+	     	<td><input type = "checkbox" ng-model = "registro.estado"/> </td>
+	   </tr>
+	</tbody>
+
+</table>
+</div>
+<div class="row">
+	<form class="form form-inline text-center col-sm-6 col-sm-offset-3">
+		<div class="form-group">
+			<label  for="password">Contraseña de Administrador:</label>
+			<input class="form-control " id = "password" type = "password" ng-model = "password" placeholder = "password" />
+		</div>
+		<button class="btn btn-success" ng-click = "activa()"> Guardar cambios </button>
+	</form>
+</div>

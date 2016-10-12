@@ -1,0 +1,83 @@
+
+
+<div class="jumbotron">
+	<h1>Promociones </h1>
+</div>
+<div ng-if = "message_error" class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center">{{message_error}}</p>
+</div>
+<div ng-if = "message_ok" class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center" >{{message_ok}}</p>
+</div>
+
+<div ng-hide = "editando">
+	<div class="row">
+		<form class="form text-center col-sm-6 col-sm-offset-3">
+			<div class="form-group">
+				<label for="nombre">Nombre promoción:</label>
+				<input required class="form-control" id = "nombre" type = "text" ng-model = "promocion.nombre" placeholder = "nombre promoción" />
+			</div>
+			<div class="form-group">
+				<label for="descripcion">descripcion promoción:</label>
+				<input required class="form-control" id = "descripcion" type = "text" ng-model = "promocion.descripcion" placeholder = "descripcion" />
+			</div>
+			<div class="form-group">
+				<label for="porcentaje">porcentaje promoción:</label>
+				<input required class="form-control" id = "porcentaje" type = "number" ng-model = "promocion.porcentaje" placeholder = "porcentaje" />
+			</div>
+			<div class="form-group">
+				<label for="contrasenia">Contraseña de administrador:</label>
+				<input required class="form-control" id = "contrasenia" type = "password" ng-model = "promocion.contrasenia" placeholder = "Contraseña actual" />
+			</div>
+			<button class="btn btn-success" ng-click = "agregar()"> Agregar promoción </button>
+		</form>
+	</div>		
+</div>
+<br>
+<div ng-show = "editando">
+	<div class="row">
+		<form class="form text-center col-sm-6 col-sm-offset-3">
+			<div class="form-group">
+				<label for="nombre">Nombre promoción:</label>
+				<input required class="form-control" id = "nombre" type = "text" ng-model = "promocion_editando.nombre" placeholder = "nombre promoción" />
+			</div>
+			<div class="form-group">
+				<label for="descripcion">descripción promoción:</label>
+				<input required class="form-control" id = "descripcion" type = "text" ng-model = "promocion_editando.descripcion" placeholder = "descripcion" />
+			</div>
+			<div class="form-group">
+				<label for="porcentaje">porcentaje promoción:</label>
+				<input required class="form-control" id = "porcentaje" type = "number" ng-model = "promocion_editando.porcentaje" placeholder = "porcentaje" />
+			</div>
+			<div class="form-group">
+				<label for="contrasenia">Contraseña de administrador:</label>
+				<input required class="form-control" id = "contrasenia" type = "password" ng-model = "contrasenia" placeholder = "Contraseña actual" />
+			</div>
+			<button class="btn btn-success" ng-click = "guardar()"> Guardar cambios </button>
+			<button class="btn btn-danger" ng-click = "eliminar()"> Eliminar promoción </button>
+			<button class="btn btn-warning" ng-click = "editando = false"> Cancelar </button>
+		</form>
+	</div>
+</div>
+<br>
+
+<div class="table-responsive col-sm-10 col-sm-offset-1">
+	<table class="table table-condensed">
+		<thead>			
+			<th scope="col">Id</th>
+		 	<th scope="col">Nombre</th>
+			<th scope="col">Descripcion</th>
+		    <th scope="col">Porcentaje</th>		   
+		</thead>
+		<tbody>
+		   <tr ng-click = "edita_promocion($index)" ng-repeat = "promocion in promociones track by $index">
+				<td>{{promocion.id_promocion}}</td>
+		     	<td>{{promocion.nombre}}</td>
+				<td>{{promocion.descripcion}}</td>
+		     	<td>{{promocion.porcentaje}}%</td>
+		   </tr>
+		</tbody>
+	</table>
+</div>

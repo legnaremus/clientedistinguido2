@@ -1,0 +1,58 @@
+<div class="jumbotron">
+	<h1> Buscador</h1>
+</div>
+
+<div ng-if = "message_error" class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center">{{message_error}}</p>
+</div>
+<div ng-if = "message_ok" class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center" >{{message_ok}}</p>
+</div>
+<div class="row">
+	<form action="" class="form form-inline col-sm-12 text-center">
+		<div class="form-group">
+			<label for="id_monedero">Id del monedero: </label>
+			<input autofocus  class="form-control" id = "id_monedero" ng-change = "obten_monederos()" type = "text" ng-model = "id_monedero" placeholder = "id_monedero" />
+		</div>
+		<div class="form-group">
+			<label for="apellido">Apellido: </label>
+			<input  class="form-control" id = "apellido" ng-change = "obten_monederos()" type = "text" ng-model = "apellido" placeholder = "apellido" />
+		</div>
+		<div class="form-group">
+			<label for="fecha">Fecha de nacimiento: </label>
+			<input  class="form-control" id = "fecha" type = "date" ng-change = "obten_monederos()" ng-model = "fecha" placeholder = "fecha" />
+		</div>
+		<button class="btn btn-primary" ng-click = "buscar()">Buscar</button>
+	</form>
+</div>
+<br>
+<div class="table-responsive col-sm-10 col-sm-offset-1">
+	<table class="table table-condensed">
+	<thead>
+		<tr>
+		<th scope="col">Id monedero</th>
+	 	<th scope="col">Nombre</th>
+		<th scope="col">Apellidos</th>
+	    <th scope="col">Fecha nacimiento</th>
+	    <th scope="col">Accion</th>
+	   </tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat = "registro in monederos track by $index">
+
+		 <td>{{registro.id_monedero}}</td>
+		 <td>{{registro.nombre}}</td>
+		 <td>{{registro.apellido_pat + ' ' + registro.apellido_mat}}</td>
+		 <td>{{registro.fecha_nacimiento}}</td>
+		 <td>
+			 <button class="btn btn-primary" ng-click = "editar(registro)"><i class="fa fa-edit fa-fw"></i></button>
+			 <button class="btn btn-success" ng-click= "ve_registros(registro)"><i class="fa fa-wpforms fa-fw"></i></button>
+			 <button class="btn btn-danger" ng-click= "reemplaza(registro)"><i class="fa fa-exchange  fa-fw"></i></button>
+		 </td>
+
+		</tr>
+	</tbody>
+</div>
+</table>

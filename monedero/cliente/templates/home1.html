@@ -1,0 +1,37 @@
+div ng-if = "login_ok">
+
+	<h2> Bienvenido </h2>
+
+ 	<label for="id_monedero">Id monedero:</label>
+	<input type = "text" ng-model = "monedero.id_monedero" ng-change = "obten_persona_monedero()" id = "id_monedero" placeholder = "monedero" /><br>
+
+	<div ng-if = "datos_ok">
+		Propietario: 
+			{{apellido_pat + ' ' + apellido_mat + ' ' + nombre}}
+			<br>
+			Monto en el monedero: {{monto}}
+
+	</div>
+
+ 	<label for="monto">Monto:</label>
+
+	<input id = "monto" type = "text" ng-change = "limpia_mensaje()" ng-model = "monedero.monto" placeholder = "monto" /><br>
+    
+ 	<label for="promocion">Promoción:</label>
+
+    <select id = "promocion" ng-change = "obten_promocion()" ng-model="promociones.select">
+      <option  ng-repeat="option in promociones.data" value="{{option.id_promocion}}">{{option.descripcion}}</option>
+    </select><br>
+
+	<div ng-if = "promo_seleccionada.porcentaje && monedero.monto">
+		Monto a agregar aplicando el {{promo_seleccionada.porcentaje}}% <br>
+		${{(monedero.monto * (promo_seleccionada.porcentaje / 100))}}
+
+	</div>
+	<button ng-click ="agrega()" > + </button> <button ng-click ="quita()" > - </button>
+	<br><br>
+  	<p class="text-error" ng-if = "message_error">{{message_error}}</p>
+  	<p class="text-success" ng-if = "message_ok">{{message_ok}}</p>
+
+
+</div>

@@ -1,0 +1,48 @@
+
+<div class="jumbotron">
+	<h1> Registros </h1>
+</div>
+<div class="row">
+	<center>
+		<form action="" class="form form-inline col-sm-10 col-sm-offset-1">
+			<div class="form-group">
+				<label for="id_monedero">Id monedero:</label>
+				<input class="form-control" type = "text" id = "id_monedero" ng-model = "filtro.id_monedero" placeholder = "id monedero" ng-change = "actualiza_datos()"/>
+			</div>
+			<div class="form-group">
+				<label for="fecha">fecha:</label>
+				<input class="form-control" type = "date" ng-model = "filtro.fecha" placeholder = "fecha"  ng-change = "actualiza_datos()"/>
+			</div>
+			<h2> {{resultados}} resultados </h2>
+		</form>
+	</center>
+</div>
+<br>
+<div class="table-responsive col-sm-10 col-sm-offset-1">
+	<table class="table table-condensed">
+		<thead>
+			<th scope="col">Ticket</th>
+			<th scope="col">Id monedero</th>
+		 	<th scope="col">Usuario</th>
+			<th scope="col">Importe</th>
+			<th scope="col">Porcentaje</th>
+			<th scope="col">Monto abonado</th>
+
+		    <th scope="col">Fecha transaccion</th>
+		</thead>
+		<tbody>
+		   <tr ng-repeat = "registro in transacciones track by $index">
+
+				<td>{{registro.ticket}}</td>
+				<td>{{registro.id_monedero}}</td>
+		    <td>{{registro.nombre}}</td>
+				<td>{{(registro.monto < 1 || registro.porcentaje < 1)? 0 :(registro.monto * (100 / registro.porcentaje)) | currency:'$':2}}</td>
+				<td>{{registro.porcentaje + '%'}}</td>
+				<td>{{registro.monto| currency:'$':2}}</td>
+
+		    <td>{{registro.fecha_transaccion }}</td>
+
+		   </tr>
+		</tbody>
+	</table>
+</div>

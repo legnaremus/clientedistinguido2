@@ -1,0 +1,20 @@
+<div class="jumbotron">
+	<h1> Configuraciones </h1>
+	<h3> Parametros de alerta </h3>
+</div>
+	<div ng-if = "message_error" class="alert alert-warning alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <p class="text-center">{{message_error}}</p>
+	</div>
+	<div ng-if = "message_ok" class="alert alert-success alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <p class="text-center" >{{message_ok}}</p>
+	</div>
+
+<form class="form col-sm-4 col-sm-offset-4 text-center">
+	<h3> Escriba el parametro de alerta para la sucursal </h3>
+	<div class="form-group">
+		<input class="form-control" type = "text" ng-model = "parametro" />
+	</div>
+	<button class="btn btn-success" ng-click = "guardar_parametro()"> Guardar parametro </button>
+</form>

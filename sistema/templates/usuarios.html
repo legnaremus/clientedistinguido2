@@ -1,0 +1,98 @@
+
+<div class="jumbotron">
+	<h1> Usuarios </h1>
+</div>
+
+<div ng-if = "message_error" class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center">{{message_error}}</p>
+</div>
+<div ng-if = "message_ok" class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p class="text-center" >{{message_ok}}</p>
+</div>
+
+<div ng-hide = "muestra_info_ok">
+	<div class="row">
+		<form class="form text-center col-sm-6 col-sm-offset-3">
+			<div class="form-group">
+				<label for="nombre">Nombre del usuario:</label>
+				<input required class="form-control" id = "nombre" type = "text" ng-model = "persona.nombre" placeholder = "nombre" />
+			</div>
+			<div class="form-group">
+				<label for="apellido">Apellido del usuario:</label>
+				<input required class="form-control" id = "apellido" type = "text" ng-model = "persona.apellido" placeholder = "apellido" />
+			</div>
+			<div class="form-group">
+				<label for="contrasenia">Contraseña del usuario:</label>
+				<input required class="form-control" id = "contrasenia" type = "password" ng-model = "persona.password" placeholder = "Contraseña del usuario" />
+			</div>
+			<div class="form-group">
+				<label for="verifica">Verifica la contraseña:</label>
+				<input  required class="form-control" id = "verifica" type = "password" ng-model = "persona.verifica" placeholder = "Verifica la contraseña" />
+			</div>
+			<div class="form-group">
+				<label for="admin">Derechos de administrador:</label>
+				<select class="form-control text-center" name="admin" id="admin" ng-model="persona.admin">
+					<option value="No">No</option>
+					<option value="Si">Si</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="contrasenia_usuario">Contraseña de administrador:</label>
+				<input  required class="form-control" id = "contrasenia_usuario" type = "password" ng-model = "contrasenia_usuario" placeholder = "Contraseña del administrador" />
+			</div>
+			<button class="btn btn-success" ng-click = "registrar_usuario()"> Registrar usuario </button>
+		</form>
+	</div>
+</div>
+
+<div ng-show = "muestra_info_ok">
+	<div class="row">
+		<form class="form text-center col-sm-6 col-sm-offset-3">
+			<div class="form-group">
+				<label for="nombre">Nombre del usuario:</label>
+				<input required class="form-control" id = "nombre" type = "text" ng-model = "usuario_editando.nombre" placeholder = "nombre" />
+			</div>
+			<div class="form-group">
+				<label for="apellido">Apellido del usuario:</label>
+				<input required class="form-control" id = "apellido" type = "text" ng-model = "usuario_editando.apellido_pat" placeholder = "apellido" />
+			</div>
+			<div class="form-group">
+				<label for="contrasenia">Contraseña del usuario:</label>
+				<input required class="form-control" id = "contrasenia" type = "password" ng-model = "usuario_editando.password" placeholder = "Contraseña del usuario" />
+			</div>
+			<div class="form-group">
+				<label for="admin">Derechos de administrador:</label>
+				<select
+					ng-options="option.name for option in opciones track by option.id"
+					class="form-control text-center" name="admin" id="admin" ng-model="usuario_editando.permisos">
+
+				</select>
+
+			</div>
+			<div class="form-group">
+				<label for="contrasenia_usuario">Contraseña de administrador:</label>
+				<input required class="form-control" id = "contrasenia_usuario" type = "password" ng-model = "contrasenia_usuario" placeholder = "Contraseña del administrador" />
+			</div>
+			<button class="btn btn-success" ng-click = "guardar_cambios()"> Guardar cambios </button>
+			<button class="btn btn-danger" ng-click = "eliminar_usuario()"> Eliminar usuario </button>
+			<button class="btn btn-warning" ng-click = "cancelar()"> Cancelar </button>
+		</form>
+	</div>
+</div>
+<br>
+<div class="table-responsive col-sm-10 col-sm-offset-1">
+	<table class="table table-condensed">
+		<thead>
+		 	<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+		</thead>
+		<tbody>
+		   <tr ng-repeat = "usuario in usuarios track by $index" ng-click = "click_usuario($index)">
+		     	<td>{{usuario.nombre}}</td>
+					<td>{{usuario.apellido_pat}}</td>
+		   </tr>
+		</tbody>
+	</table>
+</div>
